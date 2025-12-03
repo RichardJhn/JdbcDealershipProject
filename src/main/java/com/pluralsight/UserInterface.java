@@ -1,4 +1,9 @@
 package com.pluralsight;
+import com.pluralsight.Models.Dealership;
+import com.pluralsight.Models.LeaseContract;
+import com.pluralsight.Models.SalesContract;
+import com.pluralsight.Models.Vehicle;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;

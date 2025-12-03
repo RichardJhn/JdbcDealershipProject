@@ -1,6 +1,8 @@
 package com.pluralsight;
+import com.pluralsight.Models.LeaseContract;
+import com.pluralsight.Models.SalesContract;
+
 import java.io.*;
-import java.text.Format;
 
 public class ContractDataManager {
 
@@ -20,7 +22,7 @@ public class ContractDataManager {
                         lease.getMonthlyPayment());
 
             }
-            else if (contract instanceof  SalesContract){
+            else if (contract instanceof SalesContract){
                 SalesContract sale = (SalesContract) contract;
 
                 //adding format for the sales contract

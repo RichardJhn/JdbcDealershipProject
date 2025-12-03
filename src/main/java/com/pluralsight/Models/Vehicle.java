@@ -1,4 +1,4 @@
-package com.pluralsight;
+package com.pluralsight.Models;
 
 public class Vehicle {
     int vin;
@@ -75,8 +75,8 @@ public class Vehicle {
         this.color = color;
     }
 
-    Vehicle(int vin, int year, String make,String color, String model,
-            String vehicleType, int odometer, double price){
+    public Vehicle(int vin, int year, String make, String color, String model,
+                   String vehicleType, int odometer, double price){
         this.vin = vin;
         this.year = year;
         this.make = make;
