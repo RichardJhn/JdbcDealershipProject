@@ -32,7 +32,7 @@ public class UserInterface{
                     4 - Find vehicles by color
                     5 - Find vehicles by mileage range
                     6 - Find vehicles by type (car, truck, SUV, van)
-                    7 - Last ALL vehicles
+                    7 - List ALL vehicles
                     8 - Add a vehicle
                     9 - Remove a vehicle
                     11 - Move to contract screen
