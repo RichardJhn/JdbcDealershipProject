@@ -7,6 +7,7 @@ import com.pluralsight.Models.Vehicle;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -54,22 +55,10 @@ public class UserInterface{
 
                 switch(choice.toString()){
                     case "1":
-                        System.out.println("what is your minimum budget?");
-                        double minBudget = scanner.nextDouble();
-                        System.out.println("What is your Maximum budget?");
-                        double maxBudget = scanner.nextDouble();
-                        System.out.println("Here are the vehicles in your budget:");
-                        for(Vehicle vehicle : dealership.getVehicleByPrice(minBudget, maxBudget))
-                            System.out.println(vehicle);
+                        findByPriceRange();
                         break;
                     case "2":
-                        System.out.println("What make are you looking for?");
-                        String make = scanner.nextLine().trim();
-                        System.out.println("What model are you looking for?");
-                        String model = scanner.nextLine().trim();
-                        System.out.println("Here are your results:");
-                        for (Vehicle vehicle : dealership.getVehicleByMakeModel(make,model))
-                            System.out.println(vehicle);
+                        findByMakeModel();
                         break;
                     case "3":
                         System.out.println("What is the earliest model are you looking for?");
@@ -121,6 +110,7 @@ public class UserInterface{
                         System.out.println("Invalid entry! Please try again!");
                 }
             }catch(Exception e){
+                e.printStackTrace();
 
             }
         }
@@ -289,6 +279,43 @@ public class UserInterface{
 
         System.out.println("Lease contract has been processed successfully");
 
+    }
+
+    public void findByPriceRange(){
+        System.out.println("what is your minimum budget?");
+        double minBudget = scanner.nextDouble();
+        scanner.nextLine();
+        System.out.println("What is your Maximum budget?");
+        double maxBudget = scanner.nextDouble();
+        scanner.nextLine();
+        System.out.println("Here are the vehicles in your budget:");
+        List<Vehicle> vehiclesInRange =dao.byPriceRange(minBudget, maxBudget);
+        if(vehiclesInRange.isEmpty()){
+            System.out.println("No vehicles in your price range");
+        }
+        else{
+            for (Vehicle vehicle : vehiclesInRange) {
+            System.out.println(vehicle);
+        }
+
+        }
+
+    }
+    public void findByMakeModel(){
+        System.out.println("What Model?");
+        String userModel = scanner.nextLine();
+        System.out.println("What make?");
+        String userMake = scanner.nextLine();
+        System.out.println("Here are the vehicles");
+        List<Vehicle> vehiclesMakeModel = dao.byMakeModel(userMake, userModel);
+        if(vehiclesMakeModel.isEmpty()){
+            System.out.println("No vehicles in inventory");
+        }
+        else{
+            for(Vehicle vehicle : vehiclesMakeModel){
+                System.out.println(vehicle);
+            }
+        }
     }
 
     //Have the Menu here

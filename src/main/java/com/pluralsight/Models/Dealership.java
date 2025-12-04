@@ -1,5 +1,7 @@
 package com.pluralsight.Models;
 
+import com.pluralsight.Dao.VehicleDao;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,7 @@ public class Dealership {
     private String address;
     private String phone;
     private ArrayList<Vehicle> inventory = new ArrayList<>();
+    private VehicleDao vehicleDao;
 
     public Dealership(String name, String address, String phone) {
         this.name = name;
@@ -40,16 +43,6 @@ public class Dealership {
 
     public List<Vehicle> getAllVehicles() {
         return inventory;
-    }
-
-    public List<Vehicle> getVehicleByPrice(double min, double max) {
-        List<Vehicle> result = new ArrayList<>();
-        for (Vehicle v : inventory) {
-            if (v.getPrice() >= min && v.getPrice() <= max) {
-                result.add(v);
-            }
-        }
-        return result;
     }
 
     public List<Vehicle> getVehicleByMakeModel(String make, String model){
@@ -108,6 +101,13 @@ public class Dealership {
         }
         return null;
     }
+    public Dealership(VehicleDao vehicleDao){
+        this.vehicleDao = vehicleDao;
+    }
+    public List<Vehicle> getVehicleByPrice(double min, double max) {
+        return vehicleDao.byPriceRange(min, max);
+    }
+
 
 
 
