@@ -317,6 +317,24 @@ public class UserInterface{
             }
         }
     }
+    public void findByYear(){
+        System.out.println("What minimum Year?");
+        int minYear = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("What maximum Year?");
+        int maxYear = scanner.nextInt();
+        System.out.println("Here are the vehicles");
+        List<Vehicle> vehiclesYear = dao.byYearRange(minYear,maxYear);
+        if(vehiclesYear.isEmpty()){
+            System.out.println("No vehicles in inventory");
+        }
+        else{
+            for(Vehicle vehicle : vehiclesYear){
+                System.out.println(vehicle);
+            }
+        }
+
+    }
 
     //Have the Menu here
 
