@@ -343,12 +343,26 @@ public class UserInterface{
         System.out.println("What maximum Mile?s");
         int maxMiles = scanner.nextInt();
         System.out.println("Here are the vehicles");
-        List<Vehicle> vehiclesYear = dao.byYearRange(minMiles,maxMiles);
-        if(vehiclesYear.isEmpty()){
+        List<Vehicle> vehiclesMiles = dao.byMileage(minMiles,maxMiles);
+        if(vehiclesMiles.isEmpty()){
             System.out.println("No vehicles in inventory");
         }
         else{
-            for(Vehicle vehicle : vehiclesYear){
+            for(Vehicle vehicle : vehiclesMiles){
+                System.out.println(vehicle);
+            }
+        }
+
+    }
+    public void findByType(){
+        System.out.println("What car type?");
+        String userType = scanner.nextLine();
+        List<Vehicle> vehicleType = dao.byType (userType);
+        if(vehicleType.isEmpty()){
+            System.out.println("No vehicles in inventory");
+        }
+        else{
+            for(Vehicle vehicle : vehicleType){
                 System.out.println(vehicle);
             }
         }

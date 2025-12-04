@@ -149,6 +149,24 @@ public class VehicleDao {
         return vehicles;
     }
 
+    public List<Vehicle> byType(String vType) {
+        List<Vehicle> vehicles = new ArrayList<>();
+        String sql = "SELECT * FROM vehicles WHERE Vehicle Type = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, vType);
+
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                while (rs.next()) {
+                    vehicles.add(mapRow(rs));
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return vehicles;
+    }
 
 
 
