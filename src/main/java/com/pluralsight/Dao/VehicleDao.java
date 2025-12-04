@@ -167,6 +167,40 @@ public class VehicleDao {
 
         return vehicles;
     }
+    public boolean addVehicle(Vehicle vehicle) {
+        String sql = "INSERT INTO vehicles (VIN, Year, Make, Color, Model, `Vehicle Type`, Odometer, price) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, vehicle.getVin());
+            ps.setInt(2, vehicle.getYear());
+            ps.setString(3, vehicle.getMake());
+            ps.setString(4, vehicle.getColor());
+            ps.setString(5, vehicle.getModel());
+            ps.setString(6, vehicle.getVehicleType());
+            ps.setInt(7, vehicle.getOdometer());
+            ps.setDouble(8, vehicle.getPrice());
+
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+    public boolean removeVehicleByVin(String vin) {
+        String sql = "DELETE FROM vehicles WHERE VIN = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, vin);
+            int affectedRows = stmt.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 
 

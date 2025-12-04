@@ -70,10 +70,7 @@ public class UserInterface{
                         findByMileage();
                         break;
                     case "6":
-                        System.out.println("What type of vehicle would you like?");
-                        String userType = scanner.nextLine();
-                        for (Vehicle vehicle : dealership.getVehicleByType(userType))
-                            System.out.println(vehicle);
+                        findByType();
                         break;
                     case "7":
                         List<Vehicle> list = dao.listAllVehicle();
@@ -82,10 +79,10 @@ public class UserInterface{
                         }
                         break;
                     case "8":
-                        addNewVehicle();
+                        addVehicle();
                         break;
                     case "9":
-                        proccessRemoveVehicle();
+                        removeVehicle();
                         break;
                     case "99":
                         System.out.println("quitting");
@@ -367,6 +364,64 @@ public class UserInterface{
             }
         }
 
+    }
+    private void addVehicle() {
+        try {
+            System.out.println("Enter VIN (5 numbers):");
+            String vin = scanner.nextLine();
+
+            System.out.println("Enter Year:");
+            int year = Integer.parseInt(scanner.nextLine());
+
+            System.out.println("Enter Make:");
+            String make = scanner.nextLine();
+
+            System.out.println("Enter Model:");
+            String model = scanner.nextLine();
+
+            System.out.println("Enter Color:");
+            String color = scanner.nextLine();
+
+            System.out.println("Enter Vehicle Type:");
+            String vehicleType = scanner.nextLine();
+
+            System.out.println("Enter Mileage:");
+            int mileage = Integer.parseInt(scanner.nextLine());
+
+            System.out.println("Enter Price:");
+            double price = Double.parseDouble(scanner.nextLine());
+
+            Vehicle vehicle = new Vehicle(vin, year, make, color, model, vehicleType, mileage, price);
+
+            boolean success = dao.addVehicle(vehicle);
+
+            if (success) {
+                System.out.println("Vehicle added successfully!");
+            } else {
+                System.out.println("Failed to add vehicle. Check database connection.");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Invalid input. Please try again.");
+            e.printStackTrace();
+        }
+    }
+    private void removeVehicle() {
+        try {
+            System.out.println("Enter the VIN of the vehicle you want to remove:");
+            String vin = scanner.nextLine().trim();
+
+            boolean success = dao.removeVehicleByVin(vin);
+
+            if (success) {
+                System.out.println("Vehicle removed successfully!");
+            } else {
+                System.out.println("Vehicle with VIN " + vin + " not found.");
+            }
+        } catch (Exception e) {
+            System.out.println("Error removing vehicle. Please try again.");
+            e.printStackTrace();
+        }
     }
 
 
