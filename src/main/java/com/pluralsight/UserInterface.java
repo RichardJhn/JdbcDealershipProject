@@ -1,9 +1,12 @@
 package com.pluralsight;
+import com.pluralsight.Dao.VehicleDao;
 import com.pluralsight.Models.Dealership;
 import com.pluralsight.Models.LeaseContract;
 import com.pluralsight.Models.SalesContract;
 import com.pluralsight.Models.Vehicle;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
@@ -14,6 +17,8 @@ public class UserInterface{
     private Dealership dealership = dealershipFileManager.getDealership();
     private ArrayList<Vehicle> inventory = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
+    VehicleDao dao = new VehicleDao();
+
 
 
     public void displayScreen() {
@@ -93,9 +98,7 @@ public class UserInterface{
                         for (Vehicle vehicle : dealership.getVehicleByType(userType))
                             System.out.println(vehicle);
                         break;
-                    case "7":
-                        for (Vehicle vehicle: dealership.getAllVehicles())
-                            System.out.println(vehicle);
+                    case "7": dao.listAllVehicle();
                         break;
                     case "8":
                         addNewVehicle();

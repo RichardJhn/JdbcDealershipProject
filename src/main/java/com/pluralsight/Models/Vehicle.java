@@ -75,6 +75,11 @@ public class Vehicle {
         this.color = color;
     }
 
+    //empty for dao
+    public Vehicle(String vin, int year, String make, String color, String model, String vehicleType, int odometer, double price){
+
+    }
+
     public Vehicle(int vin, int year, String make, String color, String model,
                    String vehicleType, int odometer, double price){
         this.vin = vin;
