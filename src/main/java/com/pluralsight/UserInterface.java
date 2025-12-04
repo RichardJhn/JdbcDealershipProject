@@ -61,18 +61,10 @@ public class UserInterface{
                         findByMakeModel();
                         break;
                     case "3":
-                        System.out.println("What is the earliest model are you looking for?");
-                        int minYear = scanner.nextInt();
-                        System.out.println("What is your oldest model you're looking for?");
-                        int maxYear = scanner.nextInt();
-                        System.out.println("Here are the vehicles you are looking for: ");
-                        for(Vehicle vehicle : dealership.getVehicleByYear(minYear, maxYear))
-                            System.out.println(vehicle);
+                        findByYear();
                         break;
                     case "4":
-                        System.out.println("What color would you like your vehicle to be?");
-                        String userColor = scanner.nextLine();
-                        System.out.println(dealership.getVehicleByColor(userColor));
+                        findByColor();
                         break;
                     case "5":
                         System.out.println("Whats your minimum mileage?");
@@ -335,6 +327,21 @@ public class UserInterface{
         }
 
     }
+    public void findByColor(){
+        System.out.println("What color?");
+        String userColor = scanner.nextLine();
+        List<Vehicle> vehicleColor = dao.byColor (userColor);
+        if(vehicleColor.isEmpty()){
+            System.out.println("No vehicles in inventory");
+        }
+        else{
+            for(Vehicle vehicle : vehicleColor){
+                System.out.println(vehicle);
+            }
+        }
+
+    }
+
 
     //Have the Menu here
 
