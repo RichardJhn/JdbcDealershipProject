@@ -38,7 +38,7 @@ public class DealershipFileManager {
             while ((line = br.readLine()) != null) {
                 String[] data = line.split("\\|");
 
-                int vin = Integer.parseInt(data[0]);
+                String vin = data[0];
                 int year = Integer.parseInt(data[1]);
                 String make = data[2];
                 String color = data[3];

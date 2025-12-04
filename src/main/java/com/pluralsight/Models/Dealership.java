@@ -99,9 +99,9 @@ public class Dealership {
         }
         return result;
     }
-    public Vehicle getVehicleByVin(int vin){
+    public Vehicle getVehicleByVin(String vin){
         for (Vehicle v : inventory){
-            if (v.getVin() == vin){
+            if (v.getVin().equals(vin)){
                 return v;
 
             }

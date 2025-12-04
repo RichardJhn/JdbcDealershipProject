@@ -8,6 +8,7 @@ import com.pluralsight.Models.Vehicle;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.io.*;
 import java.time.*;
@@ -98,7 +99,11 @@ public class UserInterface{
                         for (Vehicle vehicle : dealership.getVehicleByType(userType))
                             System.out.println(vehicle);
                         break;
-                    case "7": dao.listAllVehicle();
+                    case "7":
+                        List<Vehicle> list = dao.listAllVehicle();
+                        for (Vehicle v : list) {
+                            System.out.println(v);
+                        }
                         break;
                     case "8":
                         addNewVehicle();
@@ -142,7 +147,7 @@ public class UserInterface{
         ArrayList<Vehicle> inventory = new ArrayList<>();
 
         for (Vehicle v : dealership.getAllVehicles()) {
-            if (v.getVin() == vin) {
+            if (v.getVin().equals(vin)) {
                 //    inventory.remove(v);
                 toRemove = v;
                 break;
@@ -169,8 +174,7 @@ public class UserInterface{
             FileWriter myWriter = new FileWriter("inventory.csv", true);
 
             System.out.println("What is the vin number? (5 numbers)");
-            int vin = scanner.nextInt();
-            scanner.nextLine();
+            String vin = scanner.nextLine();
 
             System.out.println("What is the year?");
             int year = scanner.nextInt();
@@ -240,8 +244,7 @@ public class UserInterface{
         String email = scanner.nextLine();
 
         System.out.println("Enter the VIN number of the vehicle:");
-        int vin = Integer.parseInt((scanner.nextLine()));
-
+        String vin = scanner.nextLine().trim();
         Vehicle vehicle = dealership.getVehicleByVin(vin);
 
         System.out.println("Will the customer be financing the vehicle? (Y/N)");
@@ -272,8 +275,7 @@ public class UserInterface{
         String email = scanner.nextLine();
 
         System.out.println("Enter the VIN number of the vehicle:");
-        int vin = Integer.parseInt((scanner.nextLine()));
-
+        String vin = scanner.nextLine().trim();
         Vehicle vehicle = dealership.getVehicleByVin(vin);
 
         LeaseContract lease = new LeaseContract(LocalDate.now().toString(), name, email, vehicle);

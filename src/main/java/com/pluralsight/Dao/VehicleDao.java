@@ -22,13 +22,13 @@ public class VehicleDao {
     }
     private Vehicle mapRow(ResultSet rs) throws SQLException {
         return new Vehicle(
-                rs.getString("vin"),
+                rs.getString("VIN"),
                 rs.getInt("Year"),
-                rs.getString("make"),
-                rs.getString("color"),
-                rs.getString("model"),
-                rs.getString("vehicle Type"),
-                rs.getInt("odometer"),
+                rs.getString("Make"),
+                rs.getString("Color"),
+                rs.getString("Model"),
+                rs.getString("Vehicle Type"),
+                rs.getInt("Odometer"),
                 rs.getDouble("price")
         );
     }
@@ -37,7 +37,7 @@ public class VehicleDao {
         List<Vehicle> vehicles = new ArrayList<>();
         try (
             PreparedStatement preparedStatement = connection.prepareStatement("select *\n" +
-                    "from inventory");
+                    "from vehicles");
             ResultSet rs = preparedStatement.executeQuery()){
 
             while(rs.next()){
@@ -48,7 +48,7 @@ public class VehicleDao {
             System.out.println("error");
             e.printStackTrace();
         }
-        return null;
+        return vehicles;
     }
 
 

@@ -1,7 +1,7 @@
 package com.pluralsight.Models;
 
 public class Vehicle {
-    int vin;
+    String vin;
     int year;
     String make;
     String color;
@@ -59,11 +59,11 @@ public class Vehicle {
         this.year = year;
     }
 
-    public int getVin() {
+    public String getVin() {
         return vin;
     }
 
-    public void setVin(int vin) {
+    public void setVin(String vin) {
         this.vin = vin;
     }
 
@@ -76,11 +76,9 @@ public class Vehicle {
     }
 
     //empty for dao
-    public Vehicle(String vin, int year, String make, String color, String model, String vehicleType, int odometer, double price){
 
-    }
 
-    public Vehicle(int vin, int year, String make, String color, String model,
+    public Vehicle(String vin, int year, String make, String color, String model,
                    String vehicleType, int odometer, double price){
         this.vin = vin;
         this.year = year;
