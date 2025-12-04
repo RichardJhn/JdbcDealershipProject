@@ -67,12 +67,7 @@ public class UserInterface{
                         findByColor();
                         break;
                     case "5":
-                        System.out.println("Whats your minimum mileage?");
-                        int minMileage = scanner.nextInt();
-                        System.out.println("Whats your max mileage?");
-                        int maxMileage = scanner.nextInt();
-                        for (Vehicle vehicle : dealership.getVehicleByMileage(minMileage, maxMileage))
-                            System.out.println(vehicle);
+                        findByMileage();
                         break;
                     case "6":
                         System.out.println("What type of vehicle would you like?");
@@ -336,6 +331,24 @@ public class UserInterface{
         }
         else{
             for(Vehicle vehicle : vehicleColor){
+                System.out.println(vehicle);
+            }
+        }
+
+    }
+    public void findByMileage(){
+        System.out.println("What minimum Miles?");
+        int minMiles = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("What maximum Mile?s");
+        int maxMiles = scanner.nextInt();
+        System.out.println("Here are the vehicles");
+        List<Vehicle> vehiclesYear = dao.byYearRange(minMiles,maxMiles);
+        if(vehiclesYear.isEmpty()){
+            System.out.println("No vehicles in inventory");
+        }
+        else{
+            for(Vehicle vehicle : vehiclesYear){
                 System.out.println(vehicle);
             }
         }
